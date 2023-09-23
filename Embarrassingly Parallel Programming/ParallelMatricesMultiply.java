@@ -25,7 +25,7 @@ public class ParallelMatricesMultiply {
         ParallelMatricesMultiply.printMatrix(A);
         ParallelMatricesMultiply.printMatrix(B);
 
-        int nCores = 5;
+        int nCores = Runtime.getRuntime().availableProcessors();
         int chunckSize = A.length / nCores;
         Thread[] threads = new Thread[nCores];
         for (int i = 0; i < nCores; i++) {
@@ -33,8 +33,8 @@ public class ParallelMatricesMultiply {
             int end = (i < nCores - 1) ? (i + 1) * chunckSize : A.length;
 
             threads[i] = new Thread(() -> {
-                for (int j = 0; j < O; j++) {
-                    for (int k = start; k < end; k++) {
+                for (int k = start; k < end; k++) {
+                    for (int j = 0; j < O; j++) {
                         C[k][j] = 0;
                         for (int m = 0; m < N; m++) {
                             C[k][j] += A[k][m] * B[m][j];
