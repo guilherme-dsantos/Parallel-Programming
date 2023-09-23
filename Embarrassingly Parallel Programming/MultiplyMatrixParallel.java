@@ -22,8 +22,8 @@ public class MultiplyMatrixParallel {
             }
         }
 
-        MultiplyMatrixSeq.printMatrix(A);
-        MultiplyMatrixSeq.printMatrix(B);
+        MultiplyMatrixParallel.printMatrix(A);
+        MultiplyMatrixParallel.printMatrix(B);
 
         int nCores = 5;
         int chunckSize = A.length / nCores;
