@@ -1,4 +1,4 @@
-public class MultiplyMatrixSeq {
+public class SequentialMatricesMultiply {
 
     public static void main(String[] args) {
 
@@ -23,8 +23,8 @@ public class MultiplyMatrixSeq {
             }
         }
 
-        MultiplyMatrixSeq.printMatrix(A);
-        MultiplyMatrixSeq.printMatrix(B);
+        SequentialMatricesMultiply.printMatrix(A);
+        SequentialMatricesMultiply.printMatrix(B);
 
         for (int i = 0; i < O; i++) {
             for (int j = 0; j < M; j++) {
@@ -35,7 +35,7 @@ public class MultiplyMatrixSeq {
             }
         }
 
-        MultiplyMatrixSeq.printMatrix(C);
+        SequentialMatricesMultiply.printMatrix(C);
     }
 
     public static void printMatrix(int[][] arr) {

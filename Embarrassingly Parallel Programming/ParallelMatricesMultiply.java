@@ -1,4 +1,4 @@
-public class MultiplyMatrixParallel {
+public class ParallelMatricesMultiply {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -22,8 +22,8 @@ public class MultiplyMatrixParallel {
             }
         }
 
-        MultiplyMatrixParallel.printMatrix(A);
-        MultiplyMatrixParallel.printMatrix(B);
+        ParallelMatricesMultiply.printMatrix(A);
+        ParallelMatricesMultiply.printMatrix(B);
 
         int nCores = 5;
         int chunckSize = A.length / nCores;
@@ -49,7 +49,7 @@ public class MultiplyMatrixParallel {
         for (Thread t : threads)
             t.join();
 
-        MultiplyMatrixParallel.printMatrix(C);
+        ParallelMatricesMultiply.printMatrix(C);
     }
 
     public static void printMatrix(int[][] arr) {
