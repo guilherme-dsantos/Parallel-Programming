@@ -1,10 +1,10 @@
-public class ParallelMatricesMultiply {
+public class ParallelMatricesMultiplication {
 
     public static void main(String[] args) throws InterruptedException {
 
-        final int M = 10;
-        final int N = 5;
-        final int O = 3;
+        final int M = 50000;
+        final int N = 500;
+        final int O = 300;
 
         int[][] A = new int[M][N];
         int[][] B = new int[N][O];
@@ -22,8 +22,8 @@ public class ParallelMatricesMultiply {
             }
         }
 
-        ParallelMatricesMultiply.printMatrix(A);
-        ParallelMatricesMultiply.printMatrix(B);
+        // ParallelMatricesMultiply.printMatrix(A);
+        // ParallelMatricesMultiply.printMatrix(B);
 
         int nCores = Runtime.getRuntime().availableProcessors();
         int chunckSize = A.length / nCores;
@@ -49,7 +49,7 @@ public class ParallelMatricesMultiply {
         for (Thread t : threads)
             t.join();
 
-        ParallelMatricesMultiply.printMatrix(C);
+        // ParallelMatricesMultiply.printMatrix(C);
     }
 
     public static void printMatrix(int[][] arr) {

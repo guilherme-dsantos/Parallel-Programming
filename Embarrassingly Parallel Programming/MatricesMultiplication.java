@@ -1,11 +1,10 @@
-public class SequentialMatricesMultiply {
+public class MatricesMultiplication {
 
     public static void main(String[] args) {
 
-        final int M = 10;
-        final int N = 5;
-
-        final int O = 3;
+        final int M = 50000;
+        final int N = 500;
+        final int O = 300;
 
         int[][] A = new int[M][N];
         int[][] B = new int[N][O];
@@ -23,8 +22,8 @@ public class SequentialMatricesMultiply {
             }
         }
 
-        SequentialMatricesMultiply.printMatrix(A);
-        SequentialMatricesMultiply.printMatrix(B);
+        // SequentialMatricesMultiply.printMatrix(A);
+        // SequentialMatricesMultiply.printMatrix(B);
 
         for (int i = 0; i < O; i++) {
             for (int j = 0; j < M; j++) {
@@ -35,7 +34,7 @@ public class SequentialMatricesMultiply {
             }
         }
 
-        SequentialMatricesMultiply.printMatrix(C);
+        // SequentialMatricesMultiply.printMatrix(C);
     }
 
     public static void printMatrix(int[][] arr) {
