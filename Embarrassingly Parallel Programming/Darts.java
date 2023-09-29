@@ -9,7 +9,7 @@ public class Darts {
   /**************** main ****************/
   public static void main(String[] args) {
     // number of numbers generated
-    int N = 1000000;
+    int N = 100000000;
 
     // radius of circle - automatic sets bounds for random number
     int radius = 1;
@@ -30,7 +30,6 @@ public class Darts {
       }
     }
 
-    System.out.println(counter_circle);
     // print estimate of π
     double pi = 4 * (counter_circle / N);
     System.out.println(pi);

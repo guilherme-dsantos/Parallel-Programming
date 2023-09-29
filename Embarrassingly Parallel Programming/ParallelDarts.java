@@ -2,7 +2,7 @@ import java.lang.Math;
 
 public class ParallelDarts {
 
-  static final int N = 1000000;
+  static final int N = 100000000;
 
   // rand function
   public static double rand(double min, double max) {
