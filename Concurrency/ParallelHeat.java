@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.concurrent.Phaser;
 
 public class ParallelHeat {
@@ -9,14 +8,7 @@ public class ParallelHeat {
 	private double[][] newm = new double[NX][NY];
 	int nCores = 8;
 	Thread[] threads = new Thread[nCores];
-	int chunckSize = NX / nCores;
-
-	public static void printMatrice(double mat[][]) {
-		for (int i = 0; i < mat.length; i++) {
-			System.out.print(Arrays.toString(mat[i]));
-			System.out.println();
-		}
-	}
+	int chunkSize = NX / nCores;
 
 	public void run() {
 		final Phaser phaser = new Phaser() {
@@ -35,11 +27,11 @@ public class ParallelHeat {
 		phaser.register();
 
 		for (int ti = 0; ti < nCores; ti++) {
-			int start = chunckSize * ti + 1;
-			int end = (ti < nCores - 1) ? chunckSize * (ti + 1) : NX - 1;
+			int start = chunkSize * ti + 1;
+			int end = (ti < nCores - 1) ? chunkSize * (ti + 1) : NX - 1;
 
 			phaser.register();
-			System.out.println("START: " + start + " END: " + end);
+
 			threads[ti] = new Thread(() -> {
 
 				do {
