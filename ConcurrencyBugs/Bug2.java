@@ -1,18 +1,14 @@
-package bugs;
-
 public class Bug2 {
 
-	
   static volatile int NEXT_IN_LINE = 0;
-  
-  
+
   // Alternative solution:
   // static AtomicInteger NEXT_IN_LINE = new AtomicInteger(0)
 
   public static void main(String[] args) throws Exception {
     new CustomerInLine().start();
     new Queue().start();
-    
+
   }
 
   static class CustomerInLine extends Thread {

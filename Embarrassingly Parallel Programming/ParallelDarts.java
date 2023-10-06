@@ -2,7 +2,7 @@ import java.lang.Math;
 
 public class ParallelDarts {
 
-  static final int N = 100000000;
+  static final int N = 1000000;
 
   // rand function
   public static double rand(double min, double max) {
@@ -51,8 +51,6 @@ public class ParallelDarts {
     for (int i = 0; i < nCores; i++) {
       counter_circle += results[i];
     }
-
-    System.out.println(counter_circle);
 
     // print estimate of π
     double pi = 4 * (counter_circle / N);

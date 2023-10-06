@@ -9,7 +9,7 @@ public class Darts {
   /**************** main ****************/
   public static void main(String[] args) {
     // number of numbers generated
-    int N = 100000000;
+    int N = 1000000;
 
     // radius of circle - automatic sets bounds for random number
     int radius = 1;
