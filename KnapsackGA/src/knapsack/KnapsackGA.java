@@ -50,15 +50,18 @@ public class KnapsackGA {
 			}
 
 			// Step4 - Mutate
+
 			for (int i = 1; i < POP_SIZE; i++) {
 				if (r.nextDouble() < PROB_MUTATION) {
 					newPopulation[i].mutate(r);
 				}
 			}
+
 			population = newPopulation;
 		}
 		long estimatedTime = System.nanoTime() - startTime;
-		System.out.println("[Sequential] Finished in " + (double) estimatedTime / 1_000_000_000 + " seconds");
+		System.out.println("[Sequential] Finished in " + (double) estimatedTime /
+				1_000_000_000 + " seconds");
 	}
 
 	private Individual tournament(int tournamentSize, Random r) {

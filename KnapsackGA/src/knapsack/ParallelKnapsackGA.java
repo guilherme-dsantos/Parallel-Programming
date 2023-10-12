@@ -7,7 +7,7 @@ public class ParallelKnapsackGA {
 	private static final int POP_SIZE = 100000;
 	private static final double PROB_MUTATION = 0.5;
 	private static final int TOURNAMENT_SIZE = 3;
-	int nCores = Runtime.getRuntime().availableProcessors();
+	int nCores = 2;
 	int chunkSize = POP_SIZE / nCores;
 	Thread[] threads = new Thread[nCores];
 
@@ -20,6 +20,7 @@ public class ParallelKnapsackGA {
 	}
 
 	private void populateInitialPopulationRandomly() {
+
 		/* Creates a new population, made of random individuals */
 		for (int i = 0; i < POP_SIZE; i++) {
 			population[i] = Individual.createRandom(r);
@@ -39,6 +40,7 @@ public class ParallelKnapsackGA {
 					for (int i = start; i < end; i++) {
 						population[i].measureFitness();
 					}
+
 				});
 				threads[t].start();
 			}
@@ -84,6 +86,7 @@ public class ParallelKnapsackGA {
 			}
 
 			// Step4 - Mutate
+
 			for (int t = 0; t < nCores; t++) {
 				int start = (chunkSize * t == 0) ? 1 : chunkSize * t;
 				int end = (t < nCores - 1) ? chunkSize * (t + 1) : POP_SIZE;
@@ -108,7 +111,8 @@ public class ParallelKnapsackGA {
 			population = newPopulation;
 		}
 		long estimatedTime = System.nanoTime() - startTime;
-		System.out.println("[Parallel] Finished in " + (double) estimatedTime / 1_000_000_000 + " seconds");
+		System.out.println("[Parallel] Finished in " + (double) estimatedTime /
+				1_000_000_000 + " seconds");
 	}
 
 	private Individual tournament(int tournamentSize, Random r) {
@@ -123,6 +127,7 @@ public class ParallelKnapsackGA {
 				best = other;
 			}
 		}
+
 		return best;
 	}
 
