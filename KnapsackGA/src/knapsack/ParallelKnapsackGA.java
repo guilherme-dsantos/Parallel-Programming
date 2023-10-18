@@ -1,13 +1,14 @@
 package knapsack;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ParallelKnapsackGA {
 	private static final int N_GENERATIONS = 500;
 	private static final int POP_SIZE = 100000;
 	private static final double PROB_MUTATION = 0.5;
 	private static final int TOURNAMENT_SIZE = 3;
-	int nCores = 2;
+	int nCores = Runtime.getRuntime().availableProcessors();
 	int chunkSize = POP_SIZE / nCores;
 	Thread[] threads = new Thread[nCores];
 
@@ -120,9 +121,9 @@ public class ParallelKnapsackGA {
 		 * In each tournament, we select tournamentSize individuals at random, and we
 		 * keep the best of those.
 		 */
-		Individual best = population[r.nextInt(POP_SIZE)];
+		Individual best = population[ThreadLocalRandom.current().nextInt(POP_SIZE)];
 		for (int i = 0; i < tournamentSize; i++) {
-			Individual other = population[r.nextInt(POP_SIZE)];
+			Individual other = population[ThreadLocalRandom.current().nextInt(POP_SIZE)];
 			if (other.fitness > best.fitness) {
 				best = other;
 			}
