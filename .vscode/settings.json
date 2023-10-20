@@ -1,0 +1,11 @@
+{
+  "java.project.sourcePaths": [
+    "StreamsAndForkJoin",
+    "Concurrency",
+    "ConcurrencyBugs",
+    "Embarrassingly Parallel Programming",
+    "papers",
+    "KnapsackGA\\src",
+    "Coin"
+  ]
+}

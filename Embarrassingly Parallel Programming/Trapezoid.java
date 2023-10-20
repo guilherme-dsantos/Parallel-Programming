@@ -4,7 +4,7 @@ public class Trapezoid {
 
   final static double STEP = Math.pow(10, -7);
   final static double X_MIN = 0;
-  final static double X_MAX = 1;
+  final static double X_MAX = 1000;
 
   // arbitrary function to integrate
   public static double f(double x) {
@@ -29,11 +29,6 @@ public class Trapezoid {
       x_2 += step;
     }
 
-    // integrate the last bit ignoring step size
-    double diff = x_max - x_1;
-    integral += area(diff, f(x_1), f(x_max));
-
-    // return final value
     return integral;
   }
 
