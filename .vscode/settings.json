@@ -1,11 +1,16 @@
 {
   "java.project.sourcePaths": [
-    "StreamsAndForkJoin",
+    "ActorModel_aula",
+    "Coin",
     "Concurrency",
     "ConcurrencyBugs",
     "Embarrassingly Parallel Programming",
-    "papers",
     "KnapsackGA\\src",
-    "Coin"
+    "papers",
+    "StreamsAndForkJoin",
+    "threadpool",
+    "VirtualThreads",
+    "workstealing",
+    "ActorModel_SVT"
   ]
 }

@@ -26,7 +26,7 @@ public class ForkJoinFibonacciGC extends RecursiveTask<Integer> {
         // Runtime.getRuntime().availableProcessors() ) return seqFib(n);
 
         // Surplus: if the current queue has more than 2 tasks than the average
-        if (RecursiveTask.getSurplusQueuedTaskCount() > 2)
+        if (RecursiveTask.getSurplusQueuedTaskCount() > 25)
             return seqFib(n);
 
         ForkJoinFibonacciGC f1 = new ForkJoinFibonacciGC(n - 1, depth + 1);

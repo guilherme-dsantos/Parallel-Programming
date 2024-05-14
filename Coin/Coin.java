@@ -1,3 +1,4 @@
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
 public class Coin extends RecursiveTask<Integer> {
@@ -7,13 +8,11 @@ public class Coin extends RecursiveTask<Integer> {
 	private int[] coins;
 	private int index;
 	private int accumulator;
-	private int depth;
 
-	public Coin(int[] coins, int index, int accumulator, int depth) {
+	public Coin(int[] coins, int index, int accumulator) {
 		this.coins = coins;
 		this.index = index;
 		this.accumulator = accumulator;
-		this.depth = depth;
 	}
 
 	public static int[] createRandomCoinSet(int N) {
@@ -41,12 +40,13 @@ public class Coin extends RecursiveTask<Integer> {
 			System.out.println(nCores + ";Sequential;" + seqEndTime);
 
 			long parInitialTime = System.nanoTime();
-			Coin c = new Coin(coins, 0, 0, 0);
-			c.fork();
+			Coin c = new Coin(coins, 0, 0);
+			ForkJoinPool pool = new ForkJoinPool(24);
+			pool.invoke(c);
 			int rp = c.join();
 			long parEndTime = System.nanoTime() - parInitialTime;
 			System.out.println(nCores + ";Parallel;" + parEndTime);
-
+			pool.close();
 			if (rp != rs) {
 				System.out.println("Wrong Result!");
 				System.exit(-1);
@@ -74,15 +74,25 @@ public class Coin extends RecursiveTask<Integer> {
 	@Override
 	protected Integer compute() {
 
+		if (index >= coins.length) {
+			if (accumulator < LIMIT) {
+				return accumulator;
+			}
+			return -1;
+		}
+		if (accumulator + coins[index] > LIMIT) {
+			return -1;
+		}
+
 		// if (RecursiveTask.getSurplusQueuedTaskCount() > 2)
 		// return seq(coins, index, accumulator);
 
-		if (depth >= coins.length / 2)
+		if (index >= coins.length / 2)
 			return seq(coins, index, accumulator);
 
-		Coin c1 = new Coin(coins, index + 1, accumulator, depth + 1);
+		Coin c1 = new Coin(coins, index + 1, accumulator);
 		c1.fork();
-		Coin c2 = new Coin(coins, index + 1, accumulator + coins[index], depth + 1);
+		Coin c2 = new Coin(coins, index + 1, accumulator + coins[index]);
 
 		int b = c2.compute();
 		int a = c1.join();
